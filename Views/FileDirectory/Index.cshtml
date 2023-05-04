@@ -1,0 +1,19 @@
+﻿@{
+	ViewData["Title"] = "Folder";
+}
+
+@{
+	ParentDirectoryData directions = ViewData["directories"] as ParentDirectoryData;
+
+	<div style="text-align:left">
+		<h4>"Folder" - @directions.Name</h4>
+
+		<ul style="list-style-type:none">
+			@foreach (var direction in directions.ChildsDirecories)
+			{
+				<li><a href="@Url.Action("Index", "FileDirectory", new {direction.Id})">@direction.DirectoryName</a></li>
+			}
+		</ul>
+	</div>
+
+}
