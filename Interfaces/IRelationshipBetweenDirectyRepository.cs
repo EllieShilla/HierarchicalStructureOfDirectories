@@ -7,5 +7,9 @@ namespace HierarchicalStructureOfDirectories.Interfaces
 		Task<ParentDirectoryData> GetRelationshipBetweenFileDirections(int parentDirectoryId);
 		string GetDirectionNameById(int id);
 		Task<List<RelationshipBetweenFileDirection>> GetRelationshipByParentID(int parentId);
+		Task ClearTable();
+		Task SaveChanges();
+		Task<RelationshipBetweenFileDirection> SaveNewRelationship(RelationshipBetweenFileDirection relationship);
+
 	}
 }

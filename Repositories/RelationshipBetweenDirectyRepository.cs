@@ -42,5 +42,23 @@ namespace HierarchicalStructureOfDirectories.Repositories
 		{
 			return await _context.RelationshipBetweenFiles.Where(i => i.DirectoryParentId == parentId).ToListAsync();
 		}
+
+		public async Task SaveChanges()
+		{
+			await _context.SaveChangesAsync();
+		}
+
+		public async Task ClearTable()
+		{
+			_context.RelationshipBetweenFiles.RemoveRange(_context.RelationshipBetweenFiles);
+			await SaveChanges();
+		}
+
+		public async Task<RelationshipBetweenFileDirection> SaveNewRelationship(RelationshipBetweenFileDirection relationship)
+		{
+			await _context.RelationshipBetweenFiles.AddAsync(relationship);
+			await SaveChanges();
+			return relationship;
+		}
 	}
 }

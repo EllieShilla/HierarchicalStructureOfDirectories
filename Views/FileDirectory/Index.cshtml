@@ -5,15 +5,34 @@
 @{
 	ParentDirectoryData directions = ViewData["directories"] as ParentDirectoryData;
 
-	<div style="text-align:left">
-		<h4>"Folder" - @directions.Name</h4>
+	if (directions != null)
+	{
+		<div style="text-align:left">
+			<h4>"Folder" - @directions.Name</h4>
 
-		<ul style="list-style-type:none">
-			@foreach (var direction in directions.ChildsDirecories)
-			{
-				<li><a href="@Url.Action("Index", "FileDirectory", new {direction.Id})">@direction.DirectoryName</a></li>
-			}
-		</ul>
-	</div>
+			<ul style="list-style-type:none">
+				@foreach (var direction in directions.ChildsDirecories)
+				{
+					<li><a href="@Url.Action("Index", "FileDirectory", new {direction.Id})">@direction.DirectoryName</a></li>
+				}
+			</ul>
+		</div>
+	}
+	else
+	{
+		<div style="text-align:center">
+		<h4>Виникла проблема з базою данних</h4>
+		</div>
+	}
 
+
+
+	@using (Html.BeginForm("Upload", "FileDirectory", FormMethod.Post))
+	{
+		<tr>
+			<td><p>Вкажіть шлях до папки (Наприклад: D:\\Folder\\SomeFolder):</p></td>
+			<td><input type="text" name="sDir" /> </td>
+		</tr>
+		<input type="submit" value="Відправити" />
+	}
 }

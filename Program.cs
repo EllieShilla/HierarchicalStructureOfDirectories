@@ -14,6 +14,7 @@ builder.Services.AddDbContext<DirectoriesContext>(opt =>
 });
 
 builder.Services.AddScoped<IRelationshipBetweenDirectyRepository, RelationshipBetweenDirectyRepository>();
+builder.Services.AddScoped<IFileDirectoryRepository, FileDirectoryRepository>();
 
 
 var app = builder.Build();
